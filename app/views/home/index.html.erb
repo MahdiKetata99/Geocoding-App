@@ -7,6 +7,11 @@
     </div>
   </div>
 
+  <div class="card">
+    <h2>Your Location</h2>
+    <%= render 'shared/map', readonly: true %>
+  </div>
+
   <div class="address-info">
     <h2>Your Address Information</h2>
     <% if @user.formatted_address.present? %>
@@ -49,105 +54,3 @@
     </div>
   </div>
 </div>
-
-<style>
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: Arial, sans-serif;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-}
-
-.header h1 {
-  margin: 0;
-  color: #2c3e50;
-  border-bottom: none;
-}
-
-.actions {
-  display: flex;
-  gap: 10px;
-}
-
-.inline-form {
-  display: inline;
-}
-
-.address-info {
-  background: #f8f9fa;
-  padding: 25px;
-  border-radius: 10px;
-  margin: 20px 0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.formatted-address {
-  font-size: 1.1em;
-  line-height: 1.6;
-  padding: 10px;
-  background: #fff;
-  border-radius: 5px;
-  border-left: 4px solid #007bff;
-}
-
-.location-details {
-  display: flex;
-  gap: 30px;
-  margin-top: 20px;
-}
-
-.detail-column {
-  flex: 1;
-  background: #fff;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
-
-.detail-column h3 {
-  color: #007bff;
-  margin-top: 0;
-  font-size: 1.1em;
-  border-bottom: 2px solid #e9ecef;
-  padding-bottom: 8px;
-  margin-bottom: 15px;
-}
-
-.button {
-  display: inline-block;
-  padding: 12px 24px;
-  background: #007bff;
-  color: white;
-  text-decoration: none;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.button:hover {
-  background: #0056b3;
-}
-
-.button.danger {
-  background: #dc3545;
-}
-
-.button.danger:hover {
-  background: #c82333;
-}
-
-h2 {
-  color: #34495e;
-  margin-top: 30px;
-  margin-bottom: 20px;
-}
-</style>
