@@ -1,0 +1,153 @@
+<div class="container">
+  <div class="header">
+    <h1>Welcome, <%= @user.email %></h1>
+    <div class="actions">
+      <%= link_to 'Edit Profile', edit_user_registration_path, class: 'button' %>
+      <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'button danger', form_class: 'inline-form' %>
+    </div>
+  </div>
+
+  <div class="address-info">
+    <h2>Your Address Information</h2>
+    <% if @user.formatted_address.present? %>
+      <p class="formatted-address">
+        <strong>Formatted Address:</strong><br>
+        <%= @user.formatted_address %>
+      </p>
+    <% else %>
+      <p>
+        <strong>Street:</strong> <%= @user.street %><br>
+        <strong>City:</strong> <%= @user.city %><br>
+        <strong>ZIP:</strong> <%= @user.zip %>
+      </p>
+    <% end %>
+
+    <h2>Location Details</h2>
+    <div class="location-details">
+      <div class="detail-column">
+        <h3>Geographic Coordinates</h3>
+        <p>
+          <strong>Latitude:</strong> <%= number_with_precision(@user.latitude, precision: 6) %><br>
+          <strong>Longitude:</strong> <%= number_with_precision(@user.longitude, precision: 6) %>
+        </p>
+      </div>
+
+      <div class="detail-column">
+        <h3>Administrative Areas</h3>
+        <p>
+          <% if @user.federal_state.present? %>
+            <strong>Federal State:</strong> <%= @user.federal_state %><br>
+          <% end %>
+          <% if @user.district.present? %>
+            <strong>District:</strong> <%= @user.district %><br>
+          <% end %>
+          <% if @user.country.present? %>
+            <strong>Country:</strong> <%= @user.country %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  margin: 0;
+  color: #2c3e50;
+  border-bottom: none;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.inline-form {
+  display: inline;
+}
+
+.address-info {
+  background: #f8f9fa;
+  padding: 25px;
+  border-radius: 10px;
+  margin: 20px 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.formatted-address {
+  font-size: 1.1em;
+  line-height: 1.6;
+  padding: 10px;
+  background: #fff;
+  border-radius: 5px;
+  border-left: 4px solid #007bff;
+}
+
+.location-details {
+  display: flex;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.detail-column {
+  flex: 1;
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.detail-column h3 {
+  color: #007bff;
+  margin-top: 0;
+  font-size: 1.1em;
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 8px;
+  margin-bottom: 15px;
+}
+
+.button {
+  display: inline-block;
+  padding: 12px 24px;
+  background: #007bff;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background: #0056b3;
+}
+
+.button.danger {
+  background: #dc3545;
+}
+
+.button.danger:hover {
+  background: #c82333;
+}
+
+h2 {
+  color: #34495e;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+</style>
