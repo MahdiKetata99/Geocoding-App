@@ -1,4 +1,8 @@
 <div class="container">
+  <div class="back-nav">
+    <%= link_to "← Back to Home", root_path, class: "back-link" %>
+  </div>
+
   <h2>Sign up</h2>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -52,90 +56,3 @@
     <%= render "devise/shared/links" %>
   </div>
 </div>
-
-<style>
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: Arial, sans-serif;
-}
-
-.card {
-  background: #f8f9fa;
-  padding: 25px;
-  border-radius: 10px;
-  margin: 20px 0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.field {
-  margin-bottom: 15px;
-}
-
-.field label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-.field input[type="text"],
-.field input[type="email"],
-.field input[type="password"] {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 16px;
-}
-
-.actions {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.button {
-  display: inline-block;
-  padding: 12px 24px;
-  background: #007bff;
-  color: white;
-  text-decoration: none;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.button:hover {
-  background: #0056b3;
-}
-
-h2 {
-  color: #2c3e50;
-  border-bottom: 3px solid #007bff;
-  padding-bottom: 10px;
-}
-
-h3 {
-  color: #34495e;
-  margin-top: 0;
-  margin-bottom: 20px;
-}
-
-.links {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.links a {
-  color: #007bff;
-  text-decoration: none;
-  margin: 0 10px;
-}
-
-.links a:hover {
-  text-decoration: underline;
-}
-</style>

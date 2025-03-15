@@ -1,56 +1,38 @@
-<div class="container">
-  <div class="header">
-    <h1>Welcome, <%= @user.email %></h1>
-    <div class="actions">
-      <%= link_to 'Edit Profile', edit_user_registration_path, class: 'button' %>
-      <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'button danger', form_class: 'inline-form' %>
-    </div>
-  </div>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GeocodingApp - Your Location Intelligence Solution</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+</head>
 
-  <div class="card">
-    <h2>Your Location</h2>
-    <%= render 'shared/map', readonly: true %>
-  </div>
-
-  <div class="address-info">
-    <h2>Your Address Information</h2>
-    <% if @user.formatted_address.present? %>
-      <p class="formatted-address">
-        <strong>Formatted Address:</strong><br>
-        <%= @user.formatted_address %>
-      </p>
-    <% else %>
-      <p>
-        <strong>Street:</strong> <%= @user.street %><br>
-        <strong>City:</strong> <%= @user.city %><br>
-        <strong>ZIP:</strong> <%= @user.zip %>
-      </p>
-    <% end %>
-
-    <h2>Location Details</h2>
-    <div class="location-details">
-      <div class="detail-column">
-        <h3>Geographic Coordinates</h3>
-        <p>
-          <strong>Latitude:</strong> <%= number_with_precision(@user.latitude, precision: 6) %><br>
-          <strong>Longitude:</strong> <%= number_with_precision(@user.longitude, precision: 6) %>
+<body>
+  <div class="hero-section">
+    <div class="content-wrapper">
+      <div class="text-content">
+        <div class="app-name">GeocodingApp</div>
+        <h1 class="title">Transform Addresses into Location Intelligence</h1>
+        <p class="description">
+          Unlock the power of location data with our advanced geocoding solution. 
+          Convert addresses into precise coordinates and enhance your spatial analysis capabilities.
         </p>
+        <div class="cta-buttons">
+          <% if user_signed_in? %>
+            <%= link_to "My Profile", profile_path, class: "cta-primary" %>
+            <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "cta-secondary", form_class: "inline-form" %>
+          <% else %>
+            <%= link_to "Sign Up", new_user_registration_path, class: "cta-primary" %>
+            <%= link_to "Log In", new_user_session_path, class: "cta-secondary" %>
+          <% end %>
+        </div>
       </div>
-
-      <div class="detail-column">
-        <h3>Administrative Areas</h3>
-        <p>
-          <% if @user.federal_state.present? %>
-            <strong>Federal State:</strong> <%= @user.federal_state %><br>
-          <% end %>
-          <% if @user.district.present? %>
-            <strong>District:</strong> <%= @user.district %><br>
-          <% end %>
-          <% if @user.country.present? %>
-            <strong>Country:</strong> <%= @user.country %>
-          <% end %>
-        </p>
+      
+      <div class="image-content">
+        <div class="svg-container">
+          <%= image_tag "location_pin.svg", alt: "Location Intelligence Illustration", width: "100%" %>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</body>
+</html>

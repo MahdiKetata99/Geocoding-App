@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="back-nav">
+    <%= link_to "← Back to Home", root_path, class: "back-link" %>
+  </div>
+
+  <div class="header">
+    <h1>Welcome, <%= @user.email %></h1>
+    <div class="actions">
+      <%= link_to 'Edit Profile', edit_user_registration_path, class: 'button' %>
+      <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'button danger', form_class: 'inline-form' %>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Your Location</h2>
+    <%= render 'shared/map', readonly: true %>
+  </div>
+
+  <div class="address-info">
+    <h2>Your Address Information</h2>
+    <% if @user.formatted_address.present? %>
+      <p class="formatted-address">
+        <strong>Formatted Address:</strong><br>
+        <%= @user.formatted_address %>
+      </p>
+    <% else %>
+      <p>
+        <strong>Street:</strong> <%= @user.street %><br>
+        <strong>City:</strong> <%= @user.city %><br>
+        <strong>ZIP:</strong> <%= @user.zip %>
+      </p>
+    <% end %>
+
+    <h2>Location Details</h2>
+    <div class="location-details">
+      <div class="detail-column">
+        <h3>Geographic Coordinates</h3>
+        <p>
+          <strong>Latitude:</strong> <%= number_with_precision(@user.latitude, precision: 6) %><br>
+          <strong>Longitude:</strong> <%= number_with_precision(@user.longitude, precision: 6) %>
+        </p>
+      </div>
+
+      <div class="detail-column">
+        <h3>Administrative Areas</h3>
+        <p>
+          <% if @user.federal_state.present? %>
+            <strong>Federal State:</strong> <%= @user.federal_state %><br>
+          <% end %>
+          <% if @user.district.present? %>
+            <strong>District:</strong> <%= @user.district %><br>
+          <% end %>
+          <% if @user.country.present? %>
+            <strong>Country:</strong> <%= @user.country %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div> 

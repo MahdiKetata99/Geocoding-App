@@ -1,4 +1,8 @@
 <div class="container">
+  <div class="back-nav">
+    <%= link_to "← Back to Home", root_path, class: "back-link" %>
+  </div>
+
   <h2>Log in</h2>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
