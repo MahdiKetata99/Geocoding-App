@@ -1,11 +1,21 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the "{}" from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+default_user:
+  email: user1@example.com
+  encrypted_password: <%= User.new.send(:password_digest, 'password123') %>
+  street: "Friedrichstraße 123"
+  city: "Berlin"
+  zip: "10115"
+
+user_with_location:
+  email: user2@example.com
+  encrypted_password: <%= User.new.send(:password_digest, 'password123') %>
+  street: "Alexanderplatz 1"
+  city: "Berlin"
+  zip: "10178"
+  latitude: 52.5219184
+  longitude: 13.4132147
+  federal_state: "Berlin"
+  district: "Mitte"
+  country: "Germany"
+  formatted_address: "Alexanderplatz 1, 10178 Berlin, Germany"

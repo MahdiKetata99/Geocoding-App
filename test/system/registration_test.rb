@@ -14,7 +14,8 @@ class RegistrationTest < ApplicationSystemTestCase
   test "signing up with valid information" do
     visit new_user_registration_path
 
-    fill_in "Email", with: "test@example.com"
+    unique_email = "test#{Time.current.to_i}@example.com"
+    fill_in "Email", with: unique_email
     fill_in "Password", with: "password123"
     fill_in "Password confirmation", with: "password123"
     fill_in "Street", with: "123 Main St"

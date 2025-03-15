@@ -21,11 +21,23 @@ class User < ApplicationRecord
   end
   
   after_validation :geocode, if: ->(obj) { 
-    obj.street_changed? || obj.city_changed? || obj.zip_changed? 
+    !Rails.env.test? && (obj.street_changed? || obj.city_changed? || obj.zip_changed?)
   }
 
   # Validations for address fields
   validates :street, :city, :zip, presence: true
+
+  validates :latitude, numericality: { 
+    greater_than_or_equal_to: -90,
+    less_than_or_equal_to: 90,
+    message: "must be between -90 and 90"
+  }, allow_nil: true
+
+  validates :longitude, numericality: { 
+    greater_than_or_equal_to: -180,
+    less_than_or_equal_to: 180,
+    message: "must be between -180 and 180"
+  }, allow_nil: true
 
   private
 
