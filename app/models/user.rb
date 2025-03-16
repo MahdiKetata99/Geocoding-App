@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   # Geocoding configuration
   geocoded_by :full_address do |obj, results|
-    if geo == results.first
+    if geo = results.first
       obj.latitude = geo.latitude
       obj.longitude = geo.longitude
 
@@ -21,11 +21,11 @@ class User < ApplicationRecord
   end
 
   after_validation :geocode, if: ->(obj) {
-    !Rails.env.test? && (obj.street_changed? || obj.city_changed? || obj.zip_changed?)
+    !Rails.env.test? && (obj.street_changed? || obj.city_changed? || obj.zip_changed? || obj.country_changed?)
   }
 
   # Validations for address fields
-  validates :street, :city, :zip, presence: true
+  validates :street, :city, :zip, :country, presence: true
 
   validates :latitude, numericality: {
     greater_than_or_equal_to: -90,
@@ -42,6 +42,6 @@ class User < ApplicationRecord
   private
 
   def full_address
-    [ street, city, zip, "Germany" ].compact.join(", ")
+    [street, city, zip, country].compact.join(", ")
   end
 end

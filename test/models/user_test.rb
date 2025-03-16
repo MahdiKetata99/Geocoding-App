@@ -36,7 +36,7 @@ class UserTest < ActiveSupport::TestCase
     @user.federal_state = "Berlin"
     @user.district = "Mitte"
     @user.formatted_address = "Alexanderplatz, 10178 Berlin, Germany"
-    
+
     assert @user.valid?
     assert_equal "Alexanderplatz", @user.street
     assert_equal "Berlin", @user.city
@@ -61,7 +61,7 @@ class UserTest < ActiveSupport::TestCase
     @user.federal_state = nil
     @user.district = nil
     @user.formatted_address = nil
-    
+
     assert @user.valid?
   end
 

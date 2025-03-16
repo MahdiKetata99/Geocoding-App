@@ -18,6 +18,7 @@ function updateAddressFields(lat, lng) {
         const streetField = document.querySelector('input[name="user[street]"]');
         const cityField = document.querySelector('input[name="user[city]"]');
         const zipField = document.querySelector('input[name="user[zip]"]');
+        const countryField = document.querySelector('input[name="user[country]"]');
 
         if (streetField) {
           const street = [address.house_number, address.road].filter(Boolean).join(' ');
@@ -30,6 +31,10 @@ function updateAddressFields(lat, lng) {
 
         if (zipField) {
           zipField.value = address.postcode || '';
+        }
+
+        if (countryField) {
+          countryField.value = address.country || '';
         }
       }
     })

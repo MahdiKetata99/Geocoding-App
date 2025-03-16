@@ -8,7 +8,7 @@ class LocationTest < ApplicationSystemTestCase
 
   test "displaying map on home page" do
     visit root_path
-    
+
     assert_selector "h2", text: "Your Location"
     assert_selector "#map"
     assert_selector ".map-info"
@@ -23,9 +23,9 @@ class LocationTest < ApplicationSystemTestCase
       city: "Berlin",
       country: "Germany"
     )
-    
+
     visit root_path
-    
+
     assert_text "52.520008"
     assert_text "13.404954"
     assert_text "Berlin, Germany"
@@ -33,7 +33,7 @@ class LocationTest < ApplicationSystemTestCase
 
   test "updating location from edit profile page" do
     visit edit_user_registration_path
-    
+
     assert_selector "#map"
     assert_selector ".map-info"
     assert_no_text "This map shows your current saved location"
@@ -52,21 +52,21 @@ class LocationTest < ApplicationSystemTestCase
       federal_state: "Berlin",
       district: "Mitte"
     )
-    
+
     visit root_path
-    
+
     assert_selector ".location-details"
     assert_text "Geographic Coordinates"
     assert_text "52.520008"
     assert_text "13.404954"
-    
+
     assert_text "Administrative Areas"
     assert_text "Federal State: Berlin"
     assert_text "District: Mitte"
     assert_text "Country: Germany"
-    
+
     assert_text "Alexanderplatz"
     assert_text "Berlin"
     assert_text "10178"
   end
-end 
+end
