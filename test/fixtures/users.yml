@@ -6,6 +6,7 @@ default_user:
   street: "Friedrichstraße 123"
   city: "Berlin"
   zip: "10115"
+  country: "Germany"
 
 user_with_location:
   email: user2@example.com

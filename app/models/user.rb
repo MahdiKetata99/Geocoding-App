@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   # Geocoding configuration
   geocoded_by :full_address do |obj, results|
-    if geo = results.first
+    if (geo = results.first)
       obj.latitude = geo.latitude
       obj.longitude = geo.longitude
 
